@@ -1,1 +1,3 @@
 *.nogit.php
+/inc/googleApiCli/src
+/inc/googleApiCli/vendor

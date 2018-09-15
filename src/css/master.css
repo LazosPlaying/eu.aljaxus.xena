@@ -1,0 +1,67 @@
+/* DISABLE SELECTING TEXT */
+body{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-family: 'Sunflower', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+.canSelectText {
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+/* DISABLE DRAGGING IMAGES */
+img {
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
+	user-drag: none;
+}
+/* SCROLLBAR SETTINGS */
+::-webkit-scrollbar {
+	width: 4px;
+}
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+	background: #999;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #777;
+}
+
+body {
+	background-image: url('https://xena.aljaxus.eu/src/img/steve-halama-698055-unsplash-cropped-3648x2983.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	background-color: #999;
+
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+
+	overflow-x: hidden;
+}
+main {
+	flex: 1 0 auto;
+}
+.row {
+	margin-top: 20px;
+}
+
+nav > .nav-wrapper > .brand-logo {
+	margin-left: 14px;
+}
+
+.tabs {
+	overflow-x: hidden;
+}

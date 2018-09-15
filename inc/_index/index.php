@@ -3,8 +3,8 @@
 <head>
 	<!-- START META TAGS -->
 	<title>Home @ Xena</title>
-	<?php require_once __DIR__ . '/../_local/_head_meta.php'; ?>
-	<?php require_once __DIR__ . '/../_local/_head_includes.php'; ?>
+	<?php require_once __DIR__ . '/../_local/_head_meta.html'; ?>
+	<?php require_once __DIR__ . '/../_local/_head_includes.html'; ?>
 </head>
 <body>
 <!-- START HEADER -->

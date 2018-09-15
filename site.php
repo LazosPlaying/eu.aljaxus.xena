@@ -42,52 +42,6 @@
 <?php require_once __DIR__ . '/inc/_local/modal-terms.html'; ?>
 </body>
 </html>
-<style media="all">
-#siteSidebar,
-#siteContent {
-	padding: 7px;
-}
-#siteSidebar {
-	padding-left: 16px!important;
-}
-#siteSidebar > a > span,
-#siteSidebar > a > img {
-	display: block;
-}
-#siteSidebar > a:nth-child(2) > span {
-	margin-top: 16px;
-}
-#siteSidebar > a:nth-last-child(1) > span {
-	margin-bottom: 16px;
-}
-
-#siteContent h1,
-#siteContent h2,
-#siteContent h3,
-#siteContent h4,
-#siteContent h5,
-#siteContent span,
-#siteContent ul,
-#siteContent li,
-#siteContent img,
-#siteContent a,
-#siteContent p {
-	display: table;
-	margin-left: 14px;
-}
-#siteContent ul {
-
-}
-#siteSidebar .indexSection {
-	padding-left: 4px;
-}
-#siteSidebar .indexSection .indexFor-h1 { padding-left: 4px; }
-#siteSidebar .indexSection .indexFor-h2 { padding-left: 8px; }
-#siteSidebar .indexSection .indexFor-h3 { padding-left: 12px; }
-#siteSidebar .indexSection .indexFor-h4 { padding-left: 16px; }
-#siteSidebar .indexSection .indexFor-h5 { padding-left: 20px; }
-</style>
-<script src="src/js/smoothScroll.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
 	$('.sidenav').sidenav();
@@ -278,7 +232,7 @@ $(document).ready(function(){
 			            if (a.length) {
 			                $('html,body').animate({
 			                    scrollTop: a.offset().top-80
-			                }, 1700); // The number here represents the speed of the scroll in milliseconds
+			                }, 750); // The number here represents the speed of the scroll in milliseconds
 			                return false;
 			            }
 			        }
@@ -299,37 +253,6 @@ $(document).ready(function(){
 	}
 });
 </script>
-<style media="screen">
-
-#siteContent .disabledSite h5,
-#siteContent .disabledSite a {
-	display:block;
-}
-@media only screen and (max-width: 600px) {
-	#siteContent .disabledSite a {
-		width:100%;
-		margin-left: 0;
-	}
-}
-@media only screen and (min-width: 600px) {
-	#siteContent .disabledSite a {
-		width:70%;
-		margin-left:15%;
-	}
-}
-@media only screen and (min-width: 992px) {
-	#siteContent .disabledSite a {
-		width:40%;
-		margin-left:30%;
-	}
-}
-@media only screen and (min-width: 1200px) {
-	#siteContent .disabledSite a {
-		width:30%;
-		margin-left:35%;
-	}
-}
-</style>
 <!-- START CSS FILES -->
 <link rel="stylesheet" href="/src/css/site_styler.css">
 <!-- END CSS FILES -->

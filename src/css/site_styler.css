@@ -1,0 +1,70 @@
+#siteSidebar {
+	padding-left: 16px!important;
+}
+#siteSidebar > a > span,
+#siteSidebar > a > img {
+	display: block;
+}
+#siteSidebar > a:nth-child(2) > span {
+	margin-top: 16px;
+}
+#siteSidebar > a:nth-last-child(1) > span {
+	margin-bottom: 16px;
+}
+#siteSidebar .indexSection {
+	padding-left: 4px;
+}
+#siteSidebar .indexSection .indexFor-h1 { padding-left: 4px; }
+#siteSidebar .indexSection .indexFor-h2 { padding-left: 8px; }
+#siteSidebar .indexSection .indexFor-h3 { padding-left: 12px; }
+#siteSidebar .indexSection .indexFor-h4 { padding-left: 16px; }
+#siteSidebar .indexSection .indexFor-h5 { padding-left: 20px; }
+
+#siteSidebar,
+#siteContent {
+	padding: 7px;
+}
+
+#siteContent h1,
+#siteContent h2,
+#siteContent h3,
+#siteContent h4,
+#siteContent h5,
+#siteContent span,
+#siteContent ul,
+#siteContent li,
+#siteContent img,
+#siteContent a,
+#siteContent p {
+	display: table;
+	margin-left: 14px;
+}
+
+#siteContent .disabledSite h5,
+#siteContent .disabledSite a {
+	display:block;
+}
+@media only screen and (max-width: 600px) {
+	#siteContent .disabledSite a {
+		width:100%;
+		margin-left: 0;
+	}
+}
+@media only screen and (min-width: 600px) {
+	#siteContent .disabledSite a {
+		width:70%;
+		margin-left:15%;
+	}
+}
+@media only screen and (min-width: 992px) {
+	#siteContent .disabledSite a {
+		width:40%;
+		margin-left:30%;
+	}
+}
+@media only screen and (min-width: 1200px) {
+	#siteContent .disabledSite a {
+		width:30%;
+		margin-left:35%;
+	}
+}

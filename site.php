@@ -38,7 +38,7 @@
 <!-- END CONTENT -->
 
 </main>
-<?php require_once __DIR__ . '/inc/_local/footer-site.php'; ?>
+<?php require_once __DIR__ . '/inc/_local/footer-general.php'; ?>
 <?php require_once __DIR__ . '/inc/_local/modal-terms.html'; ?>
 </body>
 </html>

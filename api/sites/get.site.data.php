@@ -10,7 +10,9 @@ $datArr = [
 	'msg' => [],
 	'content' => [],
 	'metadata' => [
-		'enabled' => false
+		'enabled' => false,
+		'name' => null,
+		'title' => null
 	],
 	'owner' => [
 		'u_email' => null,
@@ -22,6 +24,7 @@ $datArr = [
 
 if (!empty($_GET['site_name'])){
 	array_push($datArr['msg'], 'Given site name is: '.$_GET['site_name']);
+	$datArr['metadata']['name'] = $_GET['site_name'];
 	if ($stmt = $pdo->prepare('SELECT `site_id`, `site_name`, `site_owner`, `site_displayname`, `site_content`, `site_options` FROM `sites` WHERE `site_name` = ?;')){
 		array_push($datArr['msg'], 'PDO statement successfully prepared @ SELECT FROM sites');
 		if ($stmt->execute([$_GET['site_name']])){

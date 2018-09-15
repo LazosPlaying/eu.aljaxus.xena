@@ -161,7 +161,7 @@ $(document).ready(function(){
 							contentHtml += '</h1>';
 							//Index related
 							if (elem.txt!=undefined){
-								indexSection.append('<a href="#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h1" style="display:block;">'+elem.txt+'</span></a>');
+								indexSection.append('<a href="/s/'+xhrData.metadata.name+'#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h1" style="display:block;">'+elem.txt+'</span></a>');
 							}
 							siteIndexCounter++;
 							break;
@@ -172,7 +172,7 @@ $(document).ready(function(){
 							contentHtml += '</h2>';
 							//Index related
 							if (elem.txt!=undefined){
-								indexSection.append('<a href="#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h2" style="display:block;">'+elem.txt+'</span></a>');
+								indexSection.append('<a href="/s/'+xhrData.metadata.name+'#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h2" style="display:block;">'+elem.txt+'</span></a>');
 							}
 							siteIndexCounter++;
 							break;
@@ -183,7 +183,7 @@ $(document).ready(function(){
 							contentHtml += '</h3>';
 							//Index related
 							if (elem.txt!=undefined){
-								indexSection.append('<a href="#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h3" style="display:block;">'+elem.txt+'</span></a>');
+								indexSection.append('<a href="/s/'+xhrData.metadata.name+'#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h3" style="display:block;">'+elem.txt+'</span></a>');
 							}
 							siteIndexCounter++;
 							break;
@@ -194,7 +194,7 @@ $(document).ready(function(){
 							contentHtml += '</h4>';
 							//Index related
 							if (elem.txt!=undefined){
-								indexSection.append('<a href="#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h4" style="display:block;">'+elem.txt+'</span></a>');
+								indexSection.append('<a href="/s/'+xhrData.metadata.name+'#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h4" style="display:block;">'+elem.txt+'</span></a>');
 							}
 							siteIndexCounter++;
 							break;
@@ -205,7 +205,7 @@ $(document).ready(function(){
 							contentHtml += '</h5>';
 							//Index related
 							if (elem.txt!=undefined){
-								indexSection.append('<a href="#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h5" style="display:block;">'+elem.txt+'</span></a>');
+								indexSection.append('<a href="/s/'+xhrData.metadata.name+'#siteIndexCounter'+siteIndexCounter+'" class="smoothScroll"><span class="indexFor-h5" style="display:block;">'+elem.txt+'</span></a>');
 							}
 							siteIndexCounter++;
 							break;
@@ -269,6 +269,21 @@ $(document).ready(function(){
 					$('#siteContent').html(contentHtml);
 				}
 				console.log('|_ Finished content parsing');
+				$('.smoothScroll').click(function(event) {
+					event.preventDefault();
+			        //CLOSE THE DROPDOWN IN NAVIGATION
+			        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+			            let a = $(this.hash);
+			            a = a.length ? a : $('[name=' + this.hash.slice(1) + ']');
+			            if (a.length) {
+			                $('html,body').animate({
+			                    scrollTop: a.offset().top-80
+			                }, 1700); // The number here represents the speed of the scroll in milliseconds
+			                return false;
+			            }
+			        }
+			    });
+				console.log('|_ Added smooth scroll to all # anchors');
 			} else {
 				document.title = 'Disabled - '+xhrData.metadata.title+' @ Xena';
 				$('#siteContent').html('<div class="disabledSite"><h5 class="center-align" style="display:block;">This site was disabled by it\'s owner.</h5><a class="center-align btn waves-effect waves-teal btn-flat" href="/">Back to main page</a></div>');

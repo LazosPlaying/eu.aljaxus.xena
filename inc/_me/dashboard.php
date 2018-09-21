@@ -218,6 +218,8 @@ div.main-sitelist tr > td > a > i {
 <!-- END CSS  -->
 
 <!-- START  SCRIPTS -->
+<script src="https://xena.aljaxus.eu/src/js/dashboard_modal_importexport.js" charset="utf-8"></script>
+<script src="https://xena.aljaxus.eu/src/js/dashboard_modal_createsite.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
 	$('.sidenav').sidenav();

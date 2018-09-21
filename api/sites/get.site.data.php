@@ -78,7 +78,7 @@ if (!empty($_GET['site_name'])){
 		array_push($datArr['msg'], 'PDO statement failed to prepare @ SELECT FROM sites');
 	}
 } else {
-	array_push($datArr['msg'], 'Site name must be provided via POST `site_name` data');
+	array_push($datArr['msg'], 'Site name must be provided via GET `site_name` data');
 }
 
 

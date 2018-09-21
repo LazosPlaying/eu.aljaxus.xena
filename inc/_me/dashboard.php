@@ -62,7 +62,125 @@
 		<a class="modal-close waves-effect waves-red btn-flat" style="background-color:rgba(244, 67, 54, 0.3) !important">Cancel</a>
 	</div>
 </div>
+<div id="modal-sites_createnew" class="modal" style="max-height:98%;max-width:90%;width:80%;">
+	<div class="modal-content">
+		<h4>Create new site</h4>
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<p>Please set your site options and fill the text inputs</p>
+			</div>
+			<div class="input-field col s12 m6 l4">
+				<input id="newsite-name" type="text" class="newsite-name">
+				<label for="newsite-name">Site name (used in URL)</label>
+			</div>
+			<div class="input-field col s12 m6 l4">
+				<input id="newsite-displayname" type="text" class="newsite-displayname">
+				<label for="newsite-displayname">Site displayname (used in page title)</label>
+			</div>
+			<div class="col s12 m12 l4" style="margin-top: 25px;">
+				<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small green" data-option="showowner" data-state="enabled" data-position="top" data-tooltip="Disable owner details visibility" style="margin:0 2px;padding:0 10px;"><i class="material-icons left" style="margin:0;">visibility</i></a>
+				<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small green" data-option="enabled" data-state="enabled" data-position="top" data-tooltip="Disable this site" style="margin:0 2px;padding:0 10px;"><i class="material-icons left" style="margin:0;">lock_open</i></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 m6 l6">
+				<form data-content="fileupload">
+					<div class="file-field input-field">
+						<div class="btn waves-effect waves-light blue inputbtn-import" style="height:36px;line-height:36px;float:unset;margin-right:14px;margin-bottom:7px;">
+							<span>Select file</span>
+							<input type="file" name="importfile" id="modal-sites_createnew-fileinput" accept="application/json">
+						</div>
+						<div class="file-path-wrapper" style="display:none!important;">
+							<input class="file-path validate" type="text">
+						</div>
+						<button type="button" class="waves-effect waves-light btn-flat clear-import" style="background-color:rgba(255, 179, 0, 0.3) !important;" data-action="clear-import">Clear import</button>
+					</div>
+				</form>
+			</div>
+			<div class="col s12 m6 l6">
+				<p>If you want to import pre-made data when creating your site, click on the "select file" button, select a file that contains the site content data and click on "import" button bellow.</p>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a class="btn waves-effect waves-red btn-flat modal-close" style="background-color:rgba(244, 67, 54, 0.3) !important">Close</a>
+		<a class="btn waves-effect waves-light btn-flat" style="background-color:rgba(76, 175, 80, 0.95) !important;color:#fff;" data-action="confirm-create-site">Create new site</a>
+	</div>
+</div>
+<script type="text/javascript">
+$('#modal-sites_createnew').find('a[data-action="confirm-create-site"]').on('click', function(event) {
+	event.preventDefault();
+	/* Act on the event */
+	let $btn 		= $(this);
+	let modal 		= $('#modal-sites_createnew');
+	let formData 	= new FormData();
+	let name 		= modal.find('#newsite-name').val();
+	let displayname	= modal.find('#newsite-displayname').val();
+	let showowner 	= ( modal.find('a[data-option="showowner"]').attr('data-state')=='enabled' ) ? true : false;
+	let enabled  	= ( modal.find('a[data-option="enabled"]').attr('data-state')=='enabled' ) ? true : false;
 
+	formData.append('name', name);
+	formData.append('displayname', displayname);
+	formData.append('showowner', showowner);
+	formData.append('enabled', enabled);
+	formData.append("importfile", document.getElementById('modal-sites_createnew-fileinput').files[0]);
+
+	$btn.attr('disabled', true);
+	modal.find('#newsite-name').attr('disabled', true);
+	modal.find('#newsite-displayname').attr('disabled', true);
+	modal.find('a[data-option="showowner"]').attr('disabled', true);
+	modal.find('a[data-option="enabled"]').attr('disabled', true);
+	modal.find('#modal-sites_createnew-fileinput').attr('disabled', true);
+	$('#modal-sites_createnew').find('button[data-action="clear-import"]').attr('disabled', true);
+
+	console.log("***************************************************");
+	console.log('Import site content process started...');
+	$.ajax({
+		url: '/api/sites/create.new.site.php',
+		// url: '/devbox/debug.php',
+		type: 'POST',
+		data: formData,
+        processData: false,
+        contentType: false,
+        cache: false
+	})
+	.done(function( xhrData ) {
+		console.log('|_ Finished API request -> /api/sites/create.new.site.php');
+		console.log('|_ Server responded with');
+		console.log(xhrData);
+		xhrData.toasts.forEach(function(el){
+			M.toast({
+				html: el.html,
+				classes: (el.classes!=undefined||el.classes!='') ? el.classes : ''
+			});
+		});
+		if (xhrData.is_success==true){
+			M.toast({
+				html: '<i class="material-icons">check</i> Successfully created new site!',
+				classes: 'green'
+			});
+			// modal.find('form[data-content="fileupload"]').find('span').html('SELECT FILE');
+			// modal.find('form[data-content="fileupload"]').find('input[type="file"]').val(null);
+		}
+	})
+	.fail(function( xhrData ) {
+		console.log('|_ Failed to access server side site data API -> /api/sites/create.new.site.php');
+	})
+	.always(function( xhrData ) {
+		setTimeout(function(){
+			$btn.attr('disabled', false);
+			modal.find('#newsite-name').attr('disabled', false);
+			modal.find('#newsite-displayname').attr('disabled', false);
+			modal.find('a[data-option="showowner"]').attr('disabled', false);
+			modal.find('a[data-option="enabled"]').attr('disabled', false);
+			modal.find('#modal-sites_createnew-fileinput').attr('disabled', false);
+			$('#modal-sites_createnew').find('button[data-action="clear-import"]').attr('disabled', false);
+
+		}, 1300);
+		console.log('Import site content process completed...');
+	});
+});
+</script>
 <!-- END MODALS -->
 </main>
 <?php require_once __DIR__ . '/../_local/footer-general.php'; ?>

@@ -14,7 +14,7 @@
 
 <!-- START CONTENT -->
 <div class="row">
-	<div class="col s12 m8 l4 offset-s0 offset-m2 offset-l4">
+	<div class="col s12 m8 l6 xl4 offset-s0 offset-m2 offset-l3 offset-xl4">
 		<div class="card blue lighten-3" style="margin-top: 10vh;">
 			<div class="card-tabs">
 				<ul class="tabs tabs-fixed-width">

@@ -35,7 +35,35 @@
 	</div>
 </div>
 <!-- END CONTENT -->
+<!-- START MODALS -->
+<div id="modal-sites_importexportcontent" class="modal" style="max-height:98%;">
+	<div class="modal-content">
+		<h4>Import / export content</h4>
+		<p>Site: <span data-content="site_name"></span></p>
+		<hr>
+		<p>Please click on the "select file" button, select a file that contains the site content data and click on "import" button bellow</p>
+		<form data-action="importContent">
+			<div class="file-field input-field">
+				<div class="btn waves-effect waves-light blue inputbtn-import" style="height:36px;line-height:36px;float:unset;margin-right:14px;">
+					<span>Select file</span>
+					<input type="file" name="importfile" accept="application/json">
+				</div>
+				<div class="file-path-wrapper" style="display:none!important;">
+					<input class="file-path validate" type="text">
+				</div>
+				<button type="submit" class="waves-effect waves-green btn-flat confirm-import" style="background-color:rgba(76, 175, 80, 0.3) !important;" data-action="confirm-import">Import content</button>
+			</div>
+		</form>
+		<hr>
+		<p>In order to export site content, click the button bellow. A new tab will open and the download will start.</p>
+		<a class="waves-effect waves-light btn btn-small blue" href="" data-action="exporturl" style="height:29px;margin:0 2px;padding:0 10px;" download><i class="material-icons left" style="margin:-0.81px 4px 0 0;font-size:1.4rem;">cloud_download</i> Export content</a>
+	</div>
+	<div class="modal-footer">
+		<a class="modal-close waves-effect waves-red btn-flat" style="background-color:rgba(244, 67, 54, 0.3) !important">Cancel</a>
+	</div>
+</div>
 
+<!-- END MODALS -->
 </main>
 <?php require_once __DIR__ . '/../_local/footer-general.php'; ?>
 <?php require_once __DIR__ . '/../_local/modal-terms.html'; ?>

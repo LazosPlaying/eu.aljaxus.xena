@@ -37,7 +37,7 @@ if (!empty($_SESSION['u_isloged']) && $_SESSION['u_isloged']==true){
 									array_push($datArr['msg'], ['Rows affected'=>$stmt2->rowCount()]);
 									$datArr['site']['new'] = $siteOptions['enabled'];
 									if ($stmt2->rowCount() == 1){
-										array_push($datArr['msg'], 'Successfullyupdated the site data');
+										array_push($datArr['msg'], 'Successfully updated the site data');
 									} else {
 										array_push($datArr['msg'], '/!\ Failed to update the site data');
 									}

@@ -23,13 +23,13 @@ if (!empty($_SESSION['u_isloged']) && $_SESSION['u_isloged']==true && !empty($_S
 
 			}
 		} else {
-			array_push($datArr['msg'], 'PDO statement failed to execute @ SELECT FROM sites');
+			array_push($datArr['msg'], '/!\ PDO statement failed to execute @ SELECT FROM sites');
 		}
 	} else {
-		array_push($datArr['msg'], 'PDO statement failed to prepare @ SELECT FROM sites');
+		array_push($datArr['msg'], '/!\ DO statement failed to prepare @ SELECT FROM sites');
 	}
 } else {
-	array_push($datArr['msg'], 'You must login in order so list your sites');
+	array_push($datArr['msg'], '/!\ You must login in order so list your sites');
 }
 
 

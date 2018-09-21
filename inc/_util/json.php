@@ -1,10 +1,11 @@
 <?php
 
-class json{
-	public function validate($string){
+class jsonUtil {
+
+	public function validate($string=NULL){
 		// decode the JSON data
 	    $result = json_decode($string);
-
+		$error	= '';
 	    // switch and check possible JSON errors
 	    switch (json_last_error()) {
 	        case JSON_ERROR_NONE:

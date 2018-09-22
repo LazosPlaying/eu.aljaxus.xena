@@ -9,6 +9,7 @@
 <body>
 	<div class="wrapper">
 		<div class="buttonWrapper">
+			<h1>Error 50x</h1>
 			<a class="button back Tooltip" title="Go Back" onclick="window.history.go(-1);"><i class="fas fa-long-arrow-alt-left"></i></a>
 			<a class="button home Tooltip" href="https://xena.aljaxus.eu" title="Return Home"><i class="fas fa-home"></i></a>
 		</div>
@@ -53,10 +54,13 @@ body {
 	max-width: 90vw;
 	margin: -10px auto 0;
 	text-align: center;
+    padding: 0 50px;
 }
 
 .wrapper h1 {
-	display: none;
+	color: #f03434;
+    font-family: fantasy;
+    font-size: 130px;
 }
 
 .wrapper .404,

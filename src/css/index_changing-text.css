@@ -1,0 +1,17 @@
+#topsection {
+	margin-top: 0;
+	background: linear-gradient(174deg, #1790fb, #493bbb);
+}
+#topsection h5 {
+	font-family: 'Montserrat', sans-serif;
+}
+#topsection h5[data-content="title-text"] {
+	color: white;
+	letter-spacing: .01em;
+	font-size: 3.5vw;
+	font-weight: bold;
+}
+#topsection h5[data-content="changing-text"] {
+	color: #64dcdc;
+	letter-spacing: .2em;
+}

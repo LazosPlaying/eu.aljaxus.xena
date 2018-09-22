@@ -9,8 +9,8 @@
 <body>
 	<div class="wrapper">
 		<div class="buttonWrapper">
-			<a class="button back Tooltip" title="Go Back" onclick="window.history.go(-1);"><i class="fa fa-long-arrow-left"></i></a>
-			<a class="button home Tooltip" href="https://xena.aljaxus.eu" title="Return Home"><i class="fa fa-home"></i></a>
+			<a class="button back Tooltip" title="Go Back" onclick="window.history.go(-1);"><i class="fas fa-long-arrow-alt-left"></i></a>
+			<a class="button home Tooltip" href="https://xena.aljaxus.eu" title="Return Home"><i class="fas fa-home"></i></a>
 		</div>
 	</div>
 </body>

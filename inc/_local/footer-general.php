@@ -1,5 +1,5 @@
 <!-- START FOOTER -->
-<footer class="page-footer blue darken-1" id="footer" style="padding-top:0;">
+<footer class="page-footer blue-grey darken-2" id="footer" style="padding-top:0;">
   	<div class="container">
     	<div class="row">
       		<div class="col s12 l6">

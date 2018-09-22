@@ -16,8 +16,19 @@
 <main>
 
 <!-- START CONTENT -->
-<div class="row">
+<div class="row" data-content="mainrow" style="margin-top:0;">
+	<div class="col s12 m12 l12 card" id="topsection">
+		<div class="col s12 m6 l6 xl6 offset-s0 offset-m3 offset-l3 offset-xl3"style="padding-top:7vh;padding-bottom:5vh;">
+			<h5 data-content="title-text" class="center-align">The Xena Project</h5>
+			<h5 data-content="changing-text" class="center-align">helper@xena:$ <span></span></h5>
+		</div>
+	</div>
+
 	<div class="col s12 m10 l8 offset-s0 offset-m1 offset-l2">
+
+	</div>
+
+	<!-- <div class="col s12 m10 l8 offset-s0 offset-m1 offset-l2">
 		<div class="carousel carousel-slider center" id="carousel1">
 			<div class="carousel-item blue white-text" href="javascript:void(0)">
 				<h2>Fourth Panel</h2>
@@ -43,7 +54,12 @@
 				<a href="/about" class="waves-effect waves-light btn">Read more about The Xena Project</a>
 			</div>
   		</div>
+	</div> -->
+
+	<div class="col s12 m10 l8 offset-s0 offset-m1 offset-l2">
+
 	</div>
+
 </div>
 <!-- END CONTENT -->
 </main>
@@ -52,9 +68,11 @@
 </body>
 </html>
 <!-- START CSS -->
+<link rel="stylesheet" href="/src/css/index_changing-text.css">
 <!-- END CSS -->
 
 <!-- START SECONDARY -->
+<script src="/src/js/index_changing-text.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
 	$('.sidenav').sidenav();

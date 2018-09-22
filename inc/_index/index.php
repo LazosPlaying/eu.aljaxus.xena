@@ -9,13 +9,11 @@
 <body>
 <!-- START HEADER -->
 <header>
-
+	<?php require_once __DIR__ . '/../_local/navbar-sidebar.php'; ?>
 </header>
 <!-- END HEADER -->
 <div id="loader-wrapper"></div>
 <main>
-
-<?php require_once __DIR__ . '/../_local/navbar-sidebar.php'; ?>
 
 <!-- START CONTENT -->
 <div class="row">

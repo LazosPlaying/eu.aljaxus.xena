@@ -44,5 +44,71 @@ class dbInit extends mysqlAuth
 	}
 }
 
+class dbManip extends dbInit
+{
+	private $pdo;
+	private $stmt;
+
+	/**
+	 * Insert new data into the database
+	 * @param  array 	$datArr	The array of data being inserted
+	 * @param  string 	$table  The name of the table being queried
+	 * @return bool         	TRUE of FALSE if the action succeeded or failed
+	 */
+	public function insert($table=null, $datArr=null)
+	{
+		// If any data is not correctly provided, the function will return false
+		if (
+			$datArr	==	null 	||
+			!is_array($datArr)	||
+			$table	==	null	||
+			!is_string($table)
+		)
+		{
+			return false;
+		}
+
+		// Create arrays with field names and their values
+		$fields = [];
+		$values = [];
+		$placeholders = rtrim(str_repeat('?,',count($datArr)),',');
+		foreach ($datArr as $key => $value)
+		{
+			array_push($fields, $key);
+			if (is_bool($value))
+			{
+				// If the value is boolean we replace "true/false" with "1/0" since MySql has bool values stored as INT(1)
+				array_push($values, ( $value==true ? 1 : 0 ));
+			} else {
+				array_push($values, $value);
+			}
+		}
+
+		// Create the SQL statement as string
+		$sql = sprintf(
+		    'INSERT INTO `%s` (%s) VALUES (%s);',
+		    $table,
+		    implode(', ', $fields),
+		    $placeholders
+		);
+		$pdo = $this->pdo();
+
+		if ($stmt = $pdo->prepare($sql))
+		{
+			if ($stmt->execute($values))
+			{
+				if ($stmt->rowCount() == 1)
+				{
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
+	
 }

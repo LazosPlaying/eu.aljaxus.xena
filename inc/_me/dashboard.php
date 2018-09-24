@@ -284,7 +284,7 @@ $(document).ready(function(){
 			} else {
 				let siteHtml = '<table><thead><tr><th>Name</th><th>Display name</th><th>Options</th><th>Actions</th></tr></thead><tbody>';
 				siteHtml += '<tr><td></td><td></td><td></td><td>';
-						siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small blue" data-action="createnew" data-position="top" data-tooltip="Create new site"><i class="material-icons left">add</i></a>';
+						siteHtml += '<a href="javascript:void(0)" onClick="$(\'#modal-sites_createnew\').modal(\'open\');" class="sites-tooltipped waves-effect waves-light btn-small blue" data-action="createnew" data-position="top" data-tooltip="Create new site"><i class="material-icons left">add</i></a>';
 				siteHtml += '</td></tr>';
 				siteHtml += '</tbody></table>';
 				sites.html(siteHtml);

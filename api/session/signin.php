@@ -44,9 +44,8 @@ if (!empty($_POST['token'])){
 					array_push($datArr['msg'], 'PDO statement successfully executed @ SELECT FROM users WHERE email');
 					if ($user = $stmt->fetch()){
 						array_push($datArr['msg'], 'User exists in the database, logging in...');
-						$sessionArr = $payload;
-						$sessionArr['u_id'] = $user['user_id'];
-						startSession($sessionArr);
+						$payload['u_id'] = $user['user_id'];
+						startSession($payload);
 					} else {
 						array_push($datArr['msg'], 'User does not exist in the database, signing up...');
 

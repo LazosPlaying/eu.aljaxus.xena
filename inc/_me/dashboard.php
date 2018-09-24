@@ -170,12 +170,7 @@ div.main-sitelist tr > td > a > i {
 $(document).ready(function(){
 	$('.sidenav').sidenav();
 	$('.tabs').tabs();
-	$('#modal-sites_importexportcontent').modal();
-	$('#modal-sites_createnew').modal({
-		onOpenStart: function (){
-
-		}
-	});
+	$('.modal').modal();
 	gapi.load('auth2', function() {
     	gapi.auth2.init();
   	});

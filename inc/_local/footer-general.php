@@ -19,9 +19,9 @@
       		</div>
       		<div class="col s12 l3 offset-l3">
         		<ul>
-          			<li><a class="grey-text text-lighten-3" href="/about">About</a></li>
-          			<li><a class="grey-text text-lighten-3" href="/me">My dashboard</a></li>
-          			<li><a class="grey-text text-lighten-3 terms-open" href="/terms.php">Terms of usage</a></li>
+          			<li><a href="/about">About</a></li>
+          			<li><a href="/me">My dashboard</a></li>
+          			<li><a class="terms-open" href="/terms.php">Terms of usage</a></li>
         		</ul>
       		</div>
     	</div>
@@ -30,10 +30,27 @@
     	<div class="container">
 			© <span id="footer-now-year"></span> The Xena Project - aljaxus.eu
     		<span class="right">
-				<a class="grey-text text-lighten-4 btn btn-flat btn-small waves-effect waves-light" target="_blank" href="https://dev.aljaxus.eu"><i class="fas fa-code"></i> aljaxus</a>
-				<a class="grey-text text-lighten-4 btn btn-flat btn-small waves-effect waves-light" target="_blank" href="https://github.com/aljaxus/eu.aljaxus.xena/"><i class="fab fa-github"></i> GitHub</a>
+				<a class="btn btn-flat btn-small waves-effect waves-light" target="_blank" href="https://dev.aljaxus.eu"><i class="fas fa-code"></i> aljaxus</a>
+				<a class="btn btn-flat btn-small waves-effect waves-light" target="_blank" href="https://github.com/aljaxus/eu.aljaxus.xena/"><i class="fab fa-github"></i> GitHub</a>
 			</span>
     	</div>
   	</div>
 </footer>
+<style media="all">
+footer a {
+	color: #eee !important;
+	transition: all .3s !important;
+}
+footer a:hover {
+	color: #64dcdc!important;
+	transition: all .3s !important;
+}
+footer > .footer-copyright span > a:hover {
+	background-color: #ffffff1f;
+}
+</style>
+<script type="text/javascript">
+	let d = new Date();
+	document.getElementById("footer-now-year").innerHTML = d.getFullYear();
+</script>
 <!-- END FOOTER -->

@@ -62,9 +62,15 @@ if (!empty($_POST['token'])){
 							])){
 								array_push($datArr['msg'], 'PDO statement successfully executed @ INSERT INTO users');
 								if ($stmt->rowCount() == 1){
-									array_push($datArr['msg'], 'PDO statement successfully INSERTED @ INSERT INTO users');
-									array_push($datArr['msg'], 'Successfully signed the user up');
-									startSession($payload);
+									if ($u_id = $pdo->lastInsertId()){
+										array_push($datArr['msg'], 'Successfully got user\'s ID');
+										array_push($datArr['msg'], 'PDO statement successfully INSERTED @ INSERT INTO users');
+										array_push($datArr['msg'], 'Successfully signed the user up');
+										$payload['u_id'] = $u_id;
+										startSession($payload);
+									} else {
+										array_push($datArr['msg'], 'Failed to get user\'s ID');
+									}
 								} elseif ($stmt->rowCount() > 1) {
 									array_push($datArr['msg'], 'PDO statement failed to INSERT @ INSERT INTO users - 2 >= rows modified');
 								} else {

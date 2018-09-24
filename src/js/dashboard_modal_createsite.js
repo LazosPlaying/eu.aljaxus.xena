@@ -31,3 +31,75 @@ $('#modal-sites_createnew').find('button[data-action="clear-import"]').on('click
 	$(this).siblings('div.inputbtn-import').children('span').html('SELECT FILE');
 	$(this).siblings('div.inputbtn-import').children('input[type="file"]').val(null);
 });
+$('#modal-sites_createnew').find('a[data-action="confirm-create-site"]').on('click', function(event) {
+	event.preventDefault();
+	/* Act on the event */
+	let $btn 		= $(this);
+	let modal 		= $('#modal-sites_createnew');
+	let formData 	= new FormData();
+	let name 		= modal.find('#newsite-name').val();
+	let displayname	= modal.find('#newsite-displayname').val();
+	let showowner 	= ( modal.find('a[data-option="showowner"]').attr('data-state')=='enabled' ) ? true : false;
+	let enabled  	= ( modal.find('a[data-option="enabled"]').attr('data-state')=='enabled' ) ? true : false;
+
+	formData.append('name', name);
+	formData.append('displayname', displayname);
+	formData.append('showowner', showowner);
+	formData.append('enabled', enabled);
+	formData.append("importfile", document.getElementById('modal-sites_createnew-fileinput').files[0]);
+
+	$btn.attr('disabled', true);
+	modal.find('#newsite-name').attr('disabled', true);
+	modal.find('#newsite-displayname').attr('disabled', true);
+	modal.find('a[data-option="showowner"]').attr('disabled', true);
+	modal.find('a[data-option="enabled"]').attr('disabled', true);
+	modal.find('#modal-sites_createnew-fileinput').attr('disabled', true);
+	$('#modal-sites_createnew').find('button[data-action="clear-import"]').attr('disabled', true);
+
+	console.log("***************************************************");
+	console.log('Import site content process started...');
+	$.ajax({
+		url: '/api/sites/create.new.site.php',
+		// url: '/devbox/debug.php',
+		type: 'POST',
+		data: formData,
+        processData: false,
+        contentType: false,
+        cache: false
+	})
+	.done(function( xhrData ) {
+		console.log('|_ Finished API request -> /api/sites/create.new.site.php');
+		console.log('|_ Server responded with');
+		console.log(xhrData);
+		xhrData.toasts.forEach(function(el){
+			M.toast({
+				html: el.html,
+				classes: (el.classes!=undefined||el.classes!='') ? el.classes : ''
+			});
+		});
+		if (xhrData.is_success==true){
+			M.toast({
+				html: '<i class="material-icons">check</i> Successfully created new site!',
+				classes: 'green'
+			});
+			// modal.find('form[data-content="fileupload"]').find('span').html('SELECT FILE');
+			// modal.find('form[data-content="fileupload"]').find('input[type="file"]').val(null);
+		}
+	})
+	.fail(function( xhrData ) {
+		console.log('|_ Failed to access server side site data API -> /api/sites/create.new.site.php');
+	})
+	.always(function( xhrData ) {
+		setTimeout(function(){
+			$btn.attr('disabled', false);
+			modal.find('#newsite-name').attr('disabled', false);
+			modal.find('#newsite-displayname').attr('disabled', false);
+			modal.find('a[data-option="showowner"]').attr('disabled', false);
+			modal.find('a[data-option="enabled"]').attr('disabled', false);
+			modal.find('#modal-sites_createnew-fileinput').attr('disabled', false);
+			$('#modal-sites_createnew').find('button[data-action="clear-import"]').attr('disabled', false);
+
+		}, 1300);
+		console.log('Import site content process completed...');
+	});
+});

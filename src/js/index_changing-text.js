@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	let str 	= [
 		"Make simple webpages",
-		"Provide safe and simple signin system",
+		"Provide safe and simple sign in system",
 		"Make things fast",
 		"Keep management simple",
 		"Make data removal easier than ever"

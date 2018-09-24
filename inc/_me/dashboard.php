@@ -151,7 +151,7 @@ main > div > div > div.card {
 }
 div.main-sitelist tr > td > button,
 div.main-sitelist tr > td > a {
-	margin: 0 2px;
+	margin: 2px;
 	padding: 0 10px;
 }
 div.main-sitelist tr > td > button > i,
@@ -160,8 +160,8 @@ div.main-sitelist tr > td > a > i {
 }
 </style>
 <link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/dashboard_modal_deletesite.css">
+<link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/dashboard_modal_importexport.css">
 <!-- END CSS  -->
-
 <!-- START  SCRIPTS -->
 <script src="https://xena.aljaxus.eu/src/js/dashboard_modal_importexport.js" charset="utf-8"></script>
 <script src="https://xena.aljaxus.eu/src/js/dashboard_modal_createsite.js" charset="utf-8"></script>

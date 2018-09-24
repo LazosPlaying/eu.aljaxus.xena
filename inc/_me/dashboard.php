@@ -102,7 +102,7 @@
 				</form>
 			</div>
 			<div class="col s12 m6 l6">
-				<p>If you want to import pre-made data when creating your site, click on the "select file" button, select a file that contains the site content data and click on "import" button bellow. You can import data using files that were obtained via export feature from any other site on Xena. Using files obtained in other way(-s) might result in unexpected behaviour.</p>
+				<p>If you want to import pre-made data when creating your site, click on the "select file" button, select a file that contains the site content data and click on "import" button bellow. You can import data using files that were obtained via export feature from any other site on Xena. Using files obtained in any other way might result in unexpected behaviour.</p>
 			</div>
 		</div>
 	</div>

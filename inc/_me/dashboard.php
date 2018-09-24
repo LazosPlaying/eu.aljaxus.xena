@@ -121,8 +121,8 @@
         </div>
 	</div>
 	<div class="modal-footer">
-		<a data-action="delete" class="waves-effect btn-large white-text waves-light red left" disabled>DELETE SITE</a>
-		<a data-action="cancel" class="modal-close waves-effect btn-large white-text waves-light green">CANCEL ACTION</a>
+		<a data-action="delete" class="waves-effect btn-large white-text waves-light red left" style="width:49%;" disabled>DELETE SITE</a>
+		<a data-action="cancel" class="modal-close waves-effect btn-large white-text waves-light green" style="width:49%;">CANCEL ACTION</a>
 	</div>
 </div>
 <!-- END MODALS -->

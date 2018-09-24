@@ -28,7 +28,7 @@
   	</div>
   	<div class="footer-copyright">
     	<div class="container">
-			© 2018 The Xena Project - aljaxus.eu
+			© <span id="footer-now-year"></span> The Xena Project - aljaxus.eu
     		<span class="right">
 				<a class="grey-text text-lighten-4 btn btn-flat btn-small waves-effect waves-light" target="_blank" href="https://dev.aljaxus.eu"><i class="fas fa-code"></i> aljaxus</a>
 				<a class="grey-text text-lighten-4 btn btn-flat btn-small waves-effect waves-light" target="_blank" href="https://github.com/aljaxus/eu.aljaxus.xena/"><i class="fab fa-github"></i> GitHub</a>

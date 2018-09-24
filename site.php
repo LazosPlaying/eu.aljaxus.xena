@@ -221,6 +221,8 @@ $(document).ready(function(){
 				if (contentHtml != ''){
 					$('#siteContent').html(null);
 					$('#siteContent').html(contentHtml);
+				} else {
+					$('#siteContent').html('<center><h5>This site does not have any content yet</h5></center>');
 				}
 				console.log('|_ Finished content parsing');
 				$('.smoothScroll').click(function(event) {

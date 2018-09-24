@@ -18,8 +18,8 @@
 <!-- START CONTENT -->
 <div class="row" data-content="mainrow" style="margin-top:0;">
 	<div class="col s12 m12 l12 card" id="topsection">
-		<div class="col s12 m6 l6 xl6 offset-s0 offset-m3 offset-l3 offset-xl3"style="padding-top:7vh;padding-bottom:5vh;">
-			<h5 data-content="title-text" class="center-align">The Xena Project</h5>
+		<div class="col s12 m10 l8 xl8 offset-s0 offset-m1 offset-l2 offset-xl2"style="padding-top:7vh;padding-bottom:5vh;">
+			<h5 data-content="title-text" class="center-align hide-on-med-and-down">The Xena Project</h5>
 			<h5 data-content="changing-text" class="center-align">helper@xena:$ <span></span></h5>
 		</div>
 	</div>

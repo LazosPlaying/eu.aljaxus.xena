@@ -1,0 +1,20 @@
+@media only screen and (max-width: 600px) {
+	#modal-sites_importexportcontent {
+		width: 95%;
+	}
+}
+@media only screen and (min-width: 600px) {
+	#modal-sites_importexportcontent {
+		width: 60%;
+	}
+}
+@media only screen and (min-width: 992px) {
+	#modal-sites_importexportcontent {
+		width: 50%;
+	}
+}
+@media only screen and (min-width: 1200px) {
+	#modal-sites_importexportcontent {
+		width: 40%;
+	}
+}

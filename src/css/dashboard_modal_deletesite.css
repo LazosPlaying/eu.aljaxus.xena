@@ -10,11 +10,11 @@
 }
 @media only screen and (min-width: 992px) {
 	#modal-sites_delete {
-		width: 30%;
+		width: 40%;
 	}
 }
 @media only screen and (min-width: 1200px) {
 	#modal-sites_delete {
-		width: 20%;
+		width: 30%;
 	}
 }

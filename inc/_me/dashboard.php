@@ -112,6 +112,19 @@
 	</div>
 </div>
 
+<div id="modal-sites_delete" class="modal" style="max-height:98%;">
+	<div class="modal-content">
+		<h4>Delete site</h4>
+		<p>Please confirm this action by typing in the correct site name</p>
+		<div class="input-field col s12">
+          	<input placeholder="Site name" id="modal-sites_delete-input_sitename" type="text">
+        </div>
+	</div>
+	<div class="modal-footer">
+		<a data-action="delete" class="waves-effect btn-large white-text waves-light red left" disabled>DELETE SITE</a>
+		<a data-action="cancel" class="modal-close waves-effect btn-large white-text waves-light green">CANCEL ACTION</a>
+	</div>
+</div>
 <!-- END MODALS -->
 </main>
 <?php require_once __DIR__ . '/../_local/footer-general.php'; ?>
@@ -146,11 +159,13 @@ div.main-sitelist tr > td > a > i {
 	margin: 0;
 }
 </style>
+<link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/dashboard_modal_deletesite.css">
 <!-- END CSS  -->
 
 <!-- START  SCRIPTS -->
 <script src="https://xena.aljaxus.eu/src/js/dashboard_modal_importexport.js" charset="utf-8"></script>
 <script src="https://xena.aljaxus.eu/src/js/dashboard_modal_createsite.js" charset="utf-8"></script>
+<script src="https://xena.aljaxus.eu/src/js/dashboard_modal_deletesite.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
 	$('.sidenav').sidenav();
@@ -217,6 +232,20 @@ $(document).ready(function(){
 					modal.find('a[data-action="exporturl"]').attr('href', 'https://xena.aljaxus.eu/api/sites/export.my.site.php?site_id='+site_id);
 					modal.attr('data-site_id', site_id);
 					modal.attr('data-site_displayname', site_displayname);
+
+					modal.modal('open');
+				});
+				sites.find('td.actions').find('a[data-action="delete"]').on('click', function(event) {
+					event.preventDefault();
+					let $this = $(this);
+					let modal = $('.modal#modal-sites_delete');
+					let site_displayname = $this.parents('tr').attr('data-sitedisplayname');
+					let site_name = $this.parents('tr').attr('data-sitename');
+					let site_id = $this.parents('tr').attr('data-siteid');
+
+					modal.attr('data-site_id', site_id);
+					modal.attr('data-site_displayname', site_displayname);
+					modal.attr('data-site_name', site_name);
 
 					modal.modal('open');
 				});

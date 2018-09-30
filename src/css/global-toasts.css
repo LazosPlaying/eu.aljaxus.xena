@@ -6,6 +6,11 @@
 	}
 }
 
-.toast > .material-icons {
-	margin-right:7px;
+.toast a.toast-action,
+.toast button.toast-action {
+	margin: 0 0 0 1rem;
+    font-weight: bold;
+}
+.toast .material-icons {
+	margin-right: 14px;
 }

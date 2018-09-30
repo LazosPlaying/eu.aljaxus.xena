@@ -18,8 +18,8 @@
 <!-- START CONTENT -->
 <div class="row" data-content="mainrow" style="margin-top:0;">
 	<div class="col s12 m12 l12 card" id="topsection">
-		<div class="col s12 m10 l8 xl8 offset-s0 offset-m1 offset-l2 offset-xl2"style="padding-top:7vh;padding-bottom:5vh;">
-			<h5 data-content="title-text" class="center-align hide-on-med-and-down">The Xena Project</h5>
+		<div class="col s12 m10 l8 xl8 offset-s0 offset-m1 offset-l2 offset-xl2">
+			<h5 data-content="title-text" class="center-align">Providing the tools you need</h5>
 			<h5 data-content="changing-text" class="center-align">helper@xena:$ <span></span></h5>
 		</div>
 	</div>
@@ -68,11 +68,11 @@
 </body>
 </html>
 <!-- START CSS -->
-<link rel="stylesheet" href="/src/css/index_changing-text.css">
+<link rel="stylesheet" href="/src/css/index_index-topsection.css">
 <!-- END CSS -->
 
 <!-- START SECONDARY -->
-<script src="/src/js/index_changing-text.js" charset="utf-8"></script>
+<script src="/src/js/index_index-changing-text.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
 	$('.sidenav').sidenav();

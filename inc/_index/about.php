@@ -18,25 +18,10 @@
 
 <!-- START CONTENT -->
 <div class="row">
-	<div class="col s12 m10 l8 offset-s0 offset-m1 offset-l2">
-		<div class="carousel carousel-slider center" id="carousel1">
-			<div class="carousel-item blue white-text" href="javascript:void(0)">
-				<h2>Fourth Panel</h2>
-				<p class="white-text">This is your fourth panel</p>
-			</div>
-		    <div class="carousel-item red white-text" href="javascript:void(0)">
-		    	<h2>First Panel</h2>
-		    	<p class="white-text">This is your first panel</p>
-		    </div>
-		    <div class="carousel-item amber white-text" href="javascript:void(0)">
-		    	<h2>Second Panel</h2>
-		    	<p class="white-text">This is your second panel</p>
-		    </div>
-		    <div class="carousel-item green white-text" href="javascript:void(0)">
-		    	<h2>Third Panel</h2>
-		    	<p class="white-text">This is your third panel</p>
-		    </div>
-  		</div>
+	<div class="col s12 m12 l12 card" id="topsection">
+		<div class="col s12 m10 l8 xl8 offset-s0 offset-m1 offset-l2 offset-xl2">
+			<h5 data-content="title-text" class="center-align">About Xena Project</h5>
+		</div>
 	</div>
 </div>
 <!-- END CONTENT -->
@@ -46,8 +31,8 @@
 </body>
 </html>
 <!-- START CSS -->
+<link rel="stylesheet" href="/src/css/index_about-topsection.css">
 <!-- END CSS -->
-
 <!-- START SCRIPTS -->
 <script>
 $(document).ready(function(){

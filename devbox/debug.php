@@ -1,7 +1,11 @@
 <?php
 require_once __DIR__ . '/../inc/_util/firstload.php';
 
-$statusData = array();
+$statusData = [
+	'get' => null,
+	'post' => null,
+	'session' => null
+];
 
 if ( isset($_SESSION) && !empty($_SESSION) ){
 	$statusData['session'] = $_SESSION;

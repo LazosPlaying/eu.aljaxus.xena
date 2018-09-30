@@ -42,7 +42,6 @@ $(document).ready(function() {
 		console.log('Preloader -> ERROR -> Cookies.get(\'preloader\') == '+status);
 	}
 
-	$('body').css('opacity', '1');
 	console.log('Preloader - removed body opacity');
 	console.log('Preloader - process completed');
 });

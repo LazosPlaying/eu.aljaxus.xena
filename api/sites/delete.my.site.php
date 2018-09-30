@@ -15,18 +15,33 @@ $datArr 	= [
 
 if ($_SESSION['u_isloged'] == true){
 	array_push($datArr['msg'], 'You are loged in.');
-	if (!empty($_POST['site_id'])){
-		array_push($datArr['msg'], 'Given site_id is: '.$_POST['site_id']);
-		if ($stmt = $pdo->prepare('SELECT `site_owner` FROM `sites` WHERE `site_id` = ?;')){
+	if (!empty($_POST['site_name'])){
+		array_push($datArr['msg'], 'Given site_name is: '.$_POST['site_name']);
+		if ($stmt = $pdo->prepare('SELECT `site_id`, `site_owner` FROM `sites` WHERE `site_name` = ?;')){
 			array_push($datArr['msg'], 'PDO statement successfully prepared @ SELECT FROM sites');
-			if ($stmt->execute([$_POST['site_id']])){
+			if ($stmt->execute([$_POST['site_name']])){
 				array_push($datArr['msg'], 'PDO statement successfully executed @ SELECT FROM sites');
 				if ($site = $stmt->fetch()){
 					array_push($datArr['msg'], 'PDO statement successfully fetched @ SELECT FROM sites');
-
 					if ($site['site_owner'] === $_SESSION['u_id']){
 						array_push($datArr['msg'], 'You do own this site');
 
+						if ($stmt = $pdo->prepare('DELETE FROM `sites` WHERE `site_id` = ?;')){
+							array_push($datArr['msg'], 'PDO statement successfully prepared @ DELETE FROM sites');
+							if ($stmt->execute([$site['site_id']])){
+								array_push($datArr['msg'], 'PDO statement successfully executed @ DELETE FROM sites');
+								if ($stmt->rowCount() == 1){
+									array_push($datArr['msg'], 'PDO statement successfully deleted @ DELETE FROM sites');
+									$datArr['is_deleted'] = true;
+								} else {
+									array_push($datArr['msg'], 'PDO statement failed to delete @ DELETE FROM sites');
+								}
+							} else {
+								array_push($datArr['msg'], 'PDO statement failed to execute @ DELETE FROM sites');
+							}
+						} else {
+							array_push($datArr['msg'], 'PDO statement failed to prepare @ DELETE FROM sites');
+						}
 
 					} else {
 						array_push($datArr['msg'], 'You do not own this site! You can only export sites that you own.');
@@ -41,7 +56,7 @@ if ($_SESSION['u_isloged'] == true){
 			array_push($datArr['msg'], 'PDO statement failed to prepare @ SELECT FROM sites');
 		}
 	} else {
-		array_push($datArr['msg'], 'Site name must be provided via GET `site_name` data');
+		array_push($datArr['msg'], 'Site name must be provided via POST `site_name` data');
 	}
 } else {
 	array_push($datArr['msg'], 'You have to be loged in in order to access this part of the API');

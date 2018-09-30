@@ -159,14 +159,138 @@ div.main-sitelist tr > td > a > i {
 	margin: 0;
 }
 </style>
-<link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/dashboard_modal_deletesite.css">
-<link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/dashboard_modal_importexport.css">
+<link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/me_index-modal_deletesite.css">
+<link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/me_index-modal_importexport.css">
 <!-- END CSS  -->
 <!-- START  SCRIPTS -->
-<script src="https://xena.aljaxus.eu/src/js/dashboard_modal_importexport.js" charset="utf-8"></script>
-<script src="https://xena.aljaxus.eu/src/js/dashboard_modal_createsite.js" charset="utf-8"></script>
-<script src="https://xena.aljaxus.eu/src/js/dashboard_modal_deletesite.js" charset="utf-8"></script>
+<script src="https://xena.aljaxus.eu/src/js/me_index-modal_importexport.js" charset="utf-8"></script>
+<script src="https://xena.aljaxus.eu/src/js/me_index-modal_createsite.js" charset="utf-8"></script>
+<script src="https://xena.aljaxus.eu/src/js/me_index-modal_deletesite.js" charset="utf-8"></script>
 <script>
+function loadSites() {
+	console.log('***************************************************');
+	console.log('Get my sites process started...');
+	console.log('|_ Get my sites process started...');
+	$.get(
+		'/api/sites/get.my.sites.php',
+		{
+		}, function(json, textStatus) {
+			/*optional stuff to do after success */
+		}
+	).done(function(xhrData){
+		console.log('|_ Finished API request -> /api/sites/get.my.sites.php');
+		console.log('|_ Server responded with');
+		console.log(xhrData);
+		let sites = $('div.main-sitelist');
+		sites.html(null);
+		if (xhrData.sites.length > 0){
+			let siteHtml = '<table><thead><tr><th>Name</th><th>Display name</th><th>Options</th><th>Actions</th></tr></thead><tbody>';
+			xhrData.sites.forEach(function(site){
+				console.log(site);
+				siteHtml += '<tr data-siteid="'+site.id+'" data-sitename="'+site.name+'" data-sitedisplayname="'+site.displayname+'">';
+				siteHtml += '<td>'+site.name+'</td>';
+				siteHtml += '<td>'+site.displayname+'</td>';
+				siteHtml += '<td class="options">';
+				siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small '+(site.options.showowner==true?"green":"red")+'" data-option="showowner" data-position="top" data-tooltip="'+(site.options.showowner==true?"Disable":"Enable")+' owner details visibility"><i class="material-icons left">'+(site.options.showowner==true?"visibility":"visibility_off")+'</i></a>';
+				siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small '+(site.options.enabled==true?"green":"red")+'" data-option="enabled" data-position="top" data-tooltip="'+(site.options.enabled==true?"Disable":"Enable")+' this site"><i class="material-icons left">'+(site.options.enabled==true?"lock_open":"lock")+'</i></a>';
+				siteHtml += '</td>';
+				siteHtml += '<td class="actions">';
+				siteHtml += '<a href="https://xena.aljaxus.eu/s/'+site.name+'" target="_blank" class="sites-tooltipped waves-effect waves-light btn-small blue darken-1" data-action="view" data-position="top" data-tooltip="Go to this site"><i class="material-icons left">open_in_new</i></a>';
+				siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small amber darken-2" data-action="import_export" data-position="top" data-tooltip="Import / export content"><i class="material-icons left">import_export</i></a>';
+				siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small amber darken-2" data-action="edit" data-position="top" data-tooltip="Edit this site"><i class="material-icons left">edit</i></a>';
+				siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small red" data-action="delete" data-position="top" data-tooltip="Delete this site"><i class="material-icons left">delete</i></a>';
+				siteHtml += '</td>';
+				siteHtml += '</tr>';
+			});
+			siteHtml += '<tr><td></td><td></td><td></td><td>';
+			siteHtml += '<a href="javascript:void(0)" onClick="$(\'#modal-sites_createnew\').modal(\'open\');" class="sites-tooltipped waves-effect waves-light btn-small blue" data-action="createnew" data-position="top" data-tooltip="Create new site"><i class="material-icons left">add</i></a>';
+			siteHtml += '</td></tr>';
+			siteHtml += '</tbody></table>';
+			sites.html(siteHtml);
+			$('.sites-tooltipped').tooltip();
+
+			sites.find('td.actions').find('a[data-action="import_export"]').on('click', function(event) {
+				event.preventDefault();
+				let $this = $(this);
+				let modal = $('.modal#modal-sites_importexportcontent');
+				let site_displayname = $this.parents('tr').attr('data-sitedisplayname');
+				let site_id = $this.parents('tr').attr('data-siteid');
+
+				modal.find('span[data-content="site_name"]').html(site_displayname);
+				modal.find('a[data-action="exporturl"]').attr('href', 'https://xena.aljaxus.eu/api/sites/export.my.site.php?site_id='+site_id);
+				modal.attr('data-site_id', site_id);
+				modal.attr('data-site_displayname', site_displayname);
+
+				modal.modal('open');
+			});
+			sites.find('td.actions').find('a[data-action="delete"]').on('click', function(event) {
+				event.preventDefault();
+				let $this = $(this);
+				let modal = $('.modal#modal-sites_delete');
+				let site_displayname = $this.parents('tr').attr('data-sitedisplayname');
+				let site_name = $this.parents('tr').attr('data-sitename');
+				let site_id = $this.parents('tr').attr('data-siteid');
+
+				modal.attr('data-site_id', site_id);
+				modal.attr('data-site_displayname', site_displayname);
+				modal.attr('data-site_name', site_name);
+
+				modal.modal('open');
+			});
+
+			sites.find('td.options').find('a').on('click', function(){
+				let $this = $(this);
+				let option = $this.attr('data-option');
+				let site_id = $this.parents('tr').attr('data-siteid');
+
+				console.log('***************************************************');
+				console.log('Update site options process Started...');
+				$this.attr('disabled', true);
+				$.post(
+				'/api/sites/update.site.options.php',
+				{
+					site_id: site_id,
+					option: option
+				}, function(json, textStatus) {
+					/*optional stuff to do after success */
+				}
+				).done(function(xhrData){
+					console.log('|_ Successfully sent data to the API');
+					console.log('|_ Server responded with');
+					console.log(xhrData);
+					$this.removeClass(xhrData.site.new==true?'red':'green').addClass(xhrData.site.new==true?'green':'red');
+					if (option==='showowner'){
+						$this.html('<i class="material-icons left">'+(xhrData.site.new==true?"visibility":"visibility_off")+'</i>').attr('data-tooltip', (xhrData.site.new==true?'Disable':'Enable')+' owner details visibility');
+					} else if (option==='enabled'){
+						$this.html('<i class="material-icons left">'+(xhrData.site.new==true?"lock_open":"lock")+'</i>').attr('data-tooltip', (xhrData.site.new==true?'Disable':'Enable')+' this site');
+					}
+				}).fail(function(xhrData){
+					console.log('|_ Failed to access server side site data API -> /api/sites/update.site.options.php');
+				}).always(function(xhrData){
+					setTimeout(function(){
+						$this.attr('disabled', false);
+					}, 350);
+					console.log('|_ Update site options process ended...');
+				});
+			});
+
+		} else {
+			let siteHtml = '<table><thead><tr><th>Name</th><th>Display name</th><th>Options</th><th>Actions</th></tr></thead><tbody>';
+			siteHtml += '<tr><td></td><td></td><td></td><td>';
+			siteHtml += '<a href="javascript:void(0)" onClick="$(\'#modal-sites_createnew\').modal(\'open\');" class="sites-tooltipped waves-effect waves-light btn-small blue" data-action="createnew" data-position="top" data-tooltip="Create new site"><i class="material-icons left">add</i></a>';
+			siteHtml += '</td></tr>';
+			siteHtml += '</tbody></table>';
+			sites.html(siteHtml);
+			$('.sites-tooltipped').tooltip();
+		}
+
+	}).fail(function(xhrData){
+		console.log('|_ Failed to access server side site data API -> /api/sites/get.my.sites.php');
+	}).always(function(xhrData){
+		console.log('|_ Get my sites process ended...');
+	});
+
+}
 $(document).ready(function(){
 	$('.sidenav').sidenav();
 	$('.tabs').tabs();
@@ -174,130 +298,7 @@ $(document).ready(function(){
 	gapi.load('auth2', function() {
     	gapi.auth2.init();
   	});
-	{
-		console.log('***************************************************');
-		console.log('Get my sites process started...');
-		console.log('|_ Get my sites process started...');
-		$.get(
-			'/api/sites/get.my.sites.php',
-			{
-			}, function(json, textStatus) {
-				/*optional stuff to do after success */
-			}
-		).done(function(xhrData){
-			console.log('|_ Finished API request -> /api/sites/get.my.sites.php');
-			console.log('|_ Server responded with');
-			console.log(xhrData);
-			let sites = $('div.main-sitelist');
-			sites.html(null);
-			if (xhrData.sites.length > 0){
-				let siteHtml = '<table><thead><tr><th>Name</th><th>Display name</th><th>Options</th><th>Actions</th></tr></thead><tbody>';
-				xhrData.sites.forEach(function(site){
-					console.log(site);
-					siteHtml += '<tr data-siteid="'+site.id+'" data-sitename="'+site.name+'" data-sitedisplayname="'+site.displayname+'">';
-						siteHtml += '<td>'+site.name+'</td>';
-						siteHtml += '<td>'+site.displayname+'</td>';
-						siteHtml += '<td class="options">';
-							siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small '+(site.options.showowner==true?"green":"red")+'" data-option="showowner" data-position="top" data-tooltip="'+(site.options.showowner==true?"Disable":"Enable")+' owner details visibility"><i class="material-icons left">'+(site.options.showowner==true?"visibility":"visibility_off")+'</i></a>';
-							siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small '+(site.options.enabled==true?"green":"red")+'" data-option="enabled" data-position="top" data-tooltip="'+(site.options.enabled==true?"Disable":"Enable")+' this site"><i class="material-icons left">'+(site.options.enabled==true?"lock_open":"lock")+'</i></a>';
-						siteHtml += '</td>';
-						siteHtml += '<td class="actions">';
-							siteHtml += '<a href="https://xena.aljaxus.eu/s/'+site.name+'" target="_blank" class="sites-tooltipped waves-effect waves-light btn-small blue darken-1" data-action="view" data-position="top" data-tooltip="Go to this site"><i class="material-icons left">open_in_new</i></a>';
-							siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small amber darken-2" data-action="import_export" data-position="top" data-tooltip="Import / export content"><i class="material-icons left">import_export</i></a>';
-							siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small amber darken-2" data-action="edit" data-position="top" data-tooltip="Edit this site"><i class="material-icons left">edit</i></a>';
-							siteHtml += '<a href="javascript:void(0)" class="sites-tooltipped waves-effect waves-light btn-small red" data-action="delete" data-position="top" data-tooltip="Delete this site"><i class="material-icons left">delete</i></a>';
-						siteHtml += '</td>';
-					siteHtml += '</tr>';
-				});
-				siteHtml += '<tr><td></td><td></td><td></td><td>';
-						siteHtml += '<a href="javascript:void(0)" onClick="$(\'#modal-sites_createnew\').modal(\'open\');" class="sites-tooltipped waves-effect waves-light btn-small blue" data-action="createnew" data-position="top" data-tooltip="Create new site"><i class="material-icons left">add</i></a>';
-				siteHtml += '</td></tr>';
-				siteHtml += '</tbody></table>';
-				sites.html(siteHtml);
-				$('.sites-tooltipped').tooltip();
-
-				sites.find('td.actions').find('a[data-action="import_export"]').on('click', function(event) {
-					event.preventDefault();
-					let $this = $(this);
-					let modal = $('.modal#modal-sites_importexportcontent');
-					let site_displayname = $this.parents('tr').attr('data-sitedisplayname');
-					let site_id = $this.parents('tr').attr('data-siteid');
-
-					modal.find('span[data-content="site_name"]').html(site_displayname);
-					modal.find('a[data-action="exporturl"]').attr('href', 'https://xena.aljaxus.eu/api/sites/export.my.site.php?site_id='+site_id);
-					modal.attr('data-site_id', site_id);
-					modal.attr('data-site_displayname', site_displayname);
-
-					modal.modal('open');
-				});
-				sites.find('td.actions').find('a[data-action="delete"]').on('click', function(event) {
-					event.preventDefault();
-					let $this = $(this);
-					let modal = $('.modal#modal-sites_delete');
-					let site_displayname = $this.parents('tr').attr('data-sitedisplayname');
-					let site_name = $this.parents('tr').attr('data-sitename');
-					let site_id = $this.parents('tr').attr('data-siteid');
-
-					modal.attr('data-site_id', site_id);
-					modal.attr('data-site_displayname', site_displayname);
-					modal.attr('data-site_name', site_name);
-
-					modal.modal('open');
-				});
-
-				sites.find('td.options').find('a').on('click', function(){
-					let $this = $(this);
-					let option = $this.attr('data-option');
-					let site_id = $this.parents('tr').attr('data-siteid');
-
-					console.log('***************************************************');
-					console.log('Update site options process Started...');
-					$this.attr('disabled', true);
-					$.post(
-						'/api/sites/update.site.options.php',
-						{
-							site_id: site_id,
-							option: option
-						}, function(json, textStatus) {
-							/*optional stuff to do after success */
-						}
-					).done(function(xhrData){
-						console.log('|_ Successfully sent data to the API');
-						console.log('|_ Server responded with');
-						console.log(xhrData);
-						$this.removeClass(xhrData.site.new==true?'red':'green').addClass(xhrData.site.new==true?'green':'red');
-						if (option==='showowner'){
-							$this.html('<i class="material-icons left">'+(xhrData.site.new==true?"visibility":"visibility_off")+'</i>').attr('data-tooltip', (xhrData.site.new==true?'Disable':'Enable')+' owner details visibility');
-						} else if (option==='enabled'){
-							$this.html('<i class="material-icons left">'+(xhrData.site.new==true?"lock_open":"lock")+'</i>').attr('data-tooltip', (xhrData.site.new==true?'Disable':'Enable')+' this site');
-						}
-					}).fail(function(xhrData){
-						console.log('|_ Failed to access server side site data API -> /api/sites/update.site.options.php');
-					}).always(function(xhrData){
-						setTimeout(function(){
-							$this.attr('disabled', false);
-						}, 350);
-						console.log('|_ Update site options process ended...');
-					});
-				});
-
-			} else {
-				let siteHtml = '<table><thead><tr><th>Name</th><th>Display name</th><th>Options</th><th>Actions</th></tr></thead><tbody>';
-				siteHtml += '<tr><td></td><td></td><td></td><td>';
-						siteHtml += '<a href="javascript:void(0)" onClick="$(\'#modal-sites_createnew\').modal(\'open\');" class="sites-tooltipped waves-effect waves-light btn-small blue" data-action="createnew" data-position="top" data-tooltip="Create new site"><i class="material-icons left">add</i></a>';
-				siteHtml += '</td></tr>';
-				siteHtml += '</tbody></table>';
-				sites.html(siteHtml);
-				$('.sites-tooltipped').tooltip();
-			}
-
-		}).fail(function(xhrData){
-			console.log('|_ Failed to access server side site data API -> /api/sites/get.my.sites.php');
-		}).always(function(xhrData){
-			console.log('|_ Get my sites process ended...');
-		});
-
-	}
+	loadSites();
 });
 </script>
 <!-- END  SCRIPTS -->

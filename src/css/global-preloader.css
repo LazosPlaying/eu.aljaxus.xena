@@ -8,13 +8,6 @@
 /*
 ///////////////////// PRELOADER STYLING ///////////////////
 */
-body {
-	opacity: 0;
-    transition: opacity 0.3s;
-}
-body:not(.loaded){
-	overflow: hidden;
-}
 #loader-wrapper {
     position: fixed;
     top: 0;

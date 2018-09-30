@@ -6,6 +6,11 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://static.aljaxus.eu/lib/jquery-prettydate/prettydate.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+window.onerror = function(error) {
+	M.toast({html: '<span><i class="material-icons left">warning</i> An error occured in your browser!</span><a href="/help/browser-error" target="_blank" class="btn-flat waves-effect toast-action">Help</a>', classes: 'red', displayLength: '10000'});
+};
+</script>
 <!-- END SCRIPTS -->
 
 <!-- START GOOGLE OAUTH -->

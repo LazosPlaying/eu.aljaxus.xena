@@ -28,17 +28,23 @@ if ($_SESSION['u_isloged'] == true){
 						if ($jsonUtil->validate($site['site_content']) == true){
 							array_push($datArr['msg'], 'Site_content has a valid JSON value');
 
-							header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-							header("Cache-Control: post-check=0, pre-check=0", false);
-							header("Pragma: public");
+							$pJ = str_replace("\n", "\r\n", json_encode(json_decode($site['site_content']), JSON_PRETTY_PRINT));
 
-							header('Content-Description: File Transfer');
-							header('Content-disposition: attachment; filename=site_export-' . $site['site_name'] . '.json');
-							header('Content-type: application/json');
-							header('Content-Length: ' . strlen($site['site_content']));
-							header('Connection: close');
-							echo $site['site_content'];
-							exit();
+                            header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+                            header("Cache-Control: post-check=0, pre-check=0", false);
+                            header("Pragma: public");
+
+                            header('Content-Description: File Transfer');
+                            header('Content-disposition: attachment; filename=site_export-' . $site['site_name'] . '.json');
+                            header('Content-type: application/json');
+                            header('Content-Length: ' . strlen($pJ));
+                            header('Connection: close');
+
+                            if (json_decode($site['site_content'])){
+
+                            }
+                            echo $pJ;
+                            exit();
 
 						} else {
 							array_push($datArr['msg'], 'Site_content has an INVALID JSON value');

@@ -27,5 +27,16 @@ window.onerror = function(error) {
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300|Source+Sans+Pro|Tillana" rel="stylesheet">
 
-<style media="all">body{opacity:0;transition:opacity 0.3s;}body:not(.loaded){overflow:hidden;}</style>
+<style media="all">
+body {
+	transition: opacity 0.3s;
+}
+body:not(.loaded) {
+	transition: opacity 0.3s;
+	background-image: unset !important;
+	opacity: 0 !important;
+	overflow: hidden !important;
+	background-color: #222222 !important;
+}
+</style>
 <!-- END STYLES -->

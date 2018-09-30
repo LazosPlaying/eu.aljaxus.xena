@@ -82,8 +82,12 @@ $('#modal-sites_createnew').find('a[data-action="confirm-create-site"]').on('cli
 				html: '<i class="material-icons">check</i> Successfully created new site!',
 				classes: 'green'
 			});
-			// modal.find('form[data-content="fileupload"]').find('span').html('SELECT FILE');
-			// modal.find('form[data-content="fileupload"]').find('input[type="file"]').val(null);
+			modal.find('#newsite-name').val(null);
+			modal.find('#newsite-displayname').val(null);
+			modal.find('form[data-content="fileupload"]').find('span').html('SELECT FILE');
+			modal.find('form[data-content="fileupload"]').find('input[type="file"]').val(null);
+			modal.modal('close');
+			loadSites();
 		}
 	})
 	.fail(function( xhrData ) {

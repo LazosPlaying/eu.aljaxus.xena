@@ -14,10 +14,12 @@
 <style media="screen">
 nav .brand-logo {
 	padding:0 30px;
+	transition: margin 0s;
 }
 @media only screen and (max-width: 600px) {
 	nav .brand-logo {
-		padding: 0;
+	    font-size: 2.0rem;
+		padding: 0 5px;
 		margin-left: 0!important;
 	}
 }

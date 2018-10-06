@@ -46,6 +46,7 @@ $(document).ready(function() {
 	console.log('Preloader - process completed');
 });
 $(window).on("load", function(){
+	$('body').css({'opacity': '1'});
 	$('body').addClass('loaded');
 	console.log('***************************************************');
 	console.log('Preloader - all content is loaded!');

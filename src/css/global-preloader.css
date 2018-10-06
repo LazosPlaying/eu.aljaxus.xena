@@ -5,6 +5,14 @@
  /  _____  \  |  `----.|  `--'  |  /  _____  \   /  .  \  |  `--'  | .----)   |    __|  |____ |  `--'  |
 /__/     \__\ |_______| \______/  /__/     \__\ /__/ \__\  \______/  |_______/    (__)_______| \______/
 */
+body {
+	transition: opacity 0.6s;
+}
+body:not(.loaded) {
+	opacity: 0;
+	overflow: hidden !important;
+	background-color: #222222 !important;
+}
 /*
 ///////////////////// PRELOADER STYLING ///////////////////
 */

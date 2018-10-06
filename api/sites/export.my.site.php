@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../../inc/_util/firstload.php';
-require_once __DIR__ . '/../../inc/_util/database.php';
-require_once __DIR__ . '/../../inc/_util/json.php';
+require_once __DIR__ . '/../../inc/__util/firstload.php';
+require_once __DIR__ . '/../../inc/__util/database.php';
+require_once __DIR__ . '/../../inc/__util/json.php';
 
 $jsonUtil 	= new jsonUtil();
 $dbutil 	= new dbInit();

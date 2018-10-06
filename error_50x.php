@@ -2,9 +2,12 @@
 <html lang="en-US" dir="LTR" class="Public">
 <head>
     <!-- START META TAGS -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<base href="https://xena.aljaxus.eu/" />
     <title>Error 50X - An error occured on our side!</title>
-	<?php require_once __DIR__ . '/inc/_local/_head_meta.html'; ?>
-	<?php require_once __DIR__ . '/inc/_local/_head_includes.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_meta.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_includes.html'; ?>
 </head>
 <body>
 	<div class="wrapper">

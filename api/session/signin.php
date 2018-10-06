@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../inc/_util/firstload.php';
-require_once __DIR__ . '/../../inc/_util/database.php';
+require_once __DIR__ . '/../../inc/__util/firstload.php';
+require_once __DIR__ . '/../../inc/__util/database.php';
 require_once __DIR__ . '/../../inc/googleApiCli/vendor/autoload.php';
 
 $utildb = new dbInit();

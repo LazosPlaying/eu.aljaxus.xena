@@ -1,17 +1,17 @@
-<?php require_once __DIR__ . '/inc/_util/firstload.php'; ?>
+<?php require_once __DIR__ . '/inc/__util/firstload.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- START META TAGS -->
 	<title>Loading ... @ Xena</title>
-	<?php require_once __DIR__ . '/inc/_local/_head_meta.html'; ?>
-	<?php require_once __DIR__ . '/inc/_local/_head_includes.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_meta.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_includes.html'; ?>
 </head>
 <body>
 <div id="loader-wrapper"></div>
 <main>
 
-<?php require_once __DIR__ . '/inc/_local/navbar-sidebar.php'; ?>
+<?php require_once __DIR__ . '/inc/__local/navbar-sidebar.php'; ?>
 
 <!-- START CONTENT -->
 <div class="row" id="siteMainCard">
@@ -38,8 +38,8 @@
 <!-- END CONTENT -->
 
 </main>
-<?php require_once __DIR__ . '/inc/_local/footer-general.php'; ?>
-<?php require_once __DIR__ . '/inc/_local/modal-terms.html'; ?>
+<?php require_once __DIR__ . '/inc/__local/footer-general.php'; ?>
+<?php require_once __DIR__ . '/inc/__local/modal-terms.html'; ?>
 </body>
 </html>
 <script>

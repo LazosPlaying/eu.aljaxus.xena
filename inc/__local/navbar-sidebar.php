@@ -6,6 +6,7 @@
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li><a class="waves-effect" href="/me"><i class="material-icons left">dashboard</i> My dashboard</a></li>
 			<?php if (isset($_SESSION['u_isloged'])===true) : ?>
+				<li><a class="waves-effect" href="/me/settings" target="_self"><i class="material-icons left">settings</i> Settings</a></li>
 				<li><a class="waves-effect" href="javascript:void(0)" onClick="googleOauth_onSignOut();"><i class="material-icons left">exit_to_app</i> Logout</a></li>
 			<?php endif; ?>
 		</ul>
@@ -54,6 +55,7 @@ nav .brand-logo {
 	<!-- <li><div class="divider"></div></li> -->
 	<li><a class="waves-effect" href="/me"><i class="material-icons">dashboard</i> My dashboard</a></li>
 	<?php if (isset($_SESSION['u_isloged'])===true) : ?>
+		<li><a class="waves-effect" href="/me/settings" target="_self"><i class="material-icons">exit_to_app</i> Logout</a></li>
 		<li><a class="waves-effect" href="javascript:void(0)" onClick="googleOauth_onSignOut();"><i class="material-icons">exit_to_app</i> Logout</a></li>
 	<?php endif; ?>
 </ul>

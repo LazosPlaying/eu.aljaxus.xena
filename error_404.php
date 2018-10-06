@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 	<base href="https://xena.aljaxus.eu/" />
     <title>Error 404 - The resource you are lookin for does not exist...</title>
-	<?php require_once __DIR__ . '/inc/_local/_head_meta.html'; ?>
-	<?php require_once __DIR__ . '/inc/_local/_head_includes.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_meta.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_includes.html'; ?>
 </head>
 <body>
 	<div class="wrapper">

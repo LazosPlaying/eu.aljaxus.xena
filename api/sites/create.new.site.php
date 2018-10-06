@@ -9,8 +9,8 @@ $dbutil 	= new dbInit();
 $pdo 		= $dbutil->pdo();
 
 
-$_POST['showowner'] = ($_POST['showowner']=='true')?true:false;
-$_POST['enabled'] = ($_POST['enabled']=='true')?true:false;
+if ($_POST['enabled']=='true') {$_POST['enabled']=true;} else {$_POST['enabled']=false;}
+if ($_POST['showowner']=='true') {$_POST['showowner']=true;} else {$_POST['showowner']=false;}
 
 $datArr = [
 	'post' => [],
@@ -84,20 +84,20 @@ if ( !empty($_POST['displayname']) ){
 	array_push($datArr['toasts'], ['classes'=>'red','html'=>'\'Displayname\' must not be empty']);
 }
 // CHECKER FOR "ENABLED"
-if ( !empty($_POST['enabled']) && ($_POST['enabled']=='true'||$_POST['enabled']=='false') ){
-	array_push($datArr['msg'], 'ENABLED is not empty.');
+if (is_bool($_POST['enabled'])){
+	array_push($datArr['msg'], 'ENABLED is correctly defined.');
 	$datArr['isok']['enabled'] = true;
 } else {
-	array_push($datArr['msg'], 'ENABLED is empty.');
+	array_push($datArr['msg'], 'ENABLED is empty or not true || false.');
 	$datArr['isok']['enabled'] = false;
 	array_push($datArr['toasts'], ['classes'=>'red','html'=>'\'Enabled\' is not boolean! Refresh the webpage.']);
 }
 // CHECKER FOR "SHOWOWNER"
-if ( !empty($_POST['showowner']) && ($_POST['showowner']=='true'||$_POST['showowner']=='false') ){
-	array_push($datArr['msg'], 'SHOWOWNER is not empty.');
+if (is_bool($_POST['showowner']) ){
+	array_push($datArr['msg'], 'SHOWOWNER is correctly defined.');
 	$datArr['isok']['showowner'] = true;
 } else {
-	array_push($datArr['msg'], 'SHOWOWNER is empty.');
+	array_push($datArr['msg'], 'SHOWOWNER is empty or not true || false.');
 	$datArr['isok']['showowner'] = false;
 	array_push($datArr['toasts'], ['classes'=>'red','html'=>'\'Showowner\' is not boolean! Refresh the webpage.']);
 }
@@ -130,7 +130,7 @@ if (!empty($_SESSION['u_isloged']) && $_SESSION['u_isloged'] == true){
 						} else {
 							$site_content = '[]';
 						}
-						$site_options = json_encode(["showowner"=>$_POST['showowner'],"enabled"=>$_POST['enabled']]);
+						$site_options = json_encode(["showowner"=>($_POST['showowner']==true?true:false),"enabled"=>($_POST['enabled']==true?true:false)]);
 						if ($stmt->execute([$_SESSION['u_id'], $_POST['name'], $_POST['displayname'], $site_content, $site_options])){
 							array_push($datArr['msg'], 'PDO statement successfully executed @ INSERT INTO sites');
 							if ($stmt->rowCount() == 1){

@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<!-- START META TAGS -->
-	<title>Home @ Xena</title>
-	<?php require_once __DIR__ . '/../_local/_head_meta.html'; ?>
-	<?php require_once __DIR__ . '/../_local/_head_includes.html'; ?>
-</head>
-<body>
-<!-- START HEADER -->
-<header>
-	<?php require_once __DIR__ . '/../_local/navbar-sidebar.php'; ?>
-</header>
-<!-- END HEADER -->
-<div id="loader-wrapper"></div>
-<main>
-
-<!-- START CONTENT -->
 <div class="row" data-content="mainrow" style="margin-top:0;">
 	<div class="col s12 m12 l12 card" id="topsection">
 		<div class="col s12 m10 l8 xl8 offset-s0 offset-m1 offset-l2 offset-xl2">
@@ -61,20 +43,11 @@
 	</div>
 
 </div>
-<!-- END CONTENT -->
-</main>
-<?php require_once __DIR__ . '/../_local/footer-general.php'; ?>
-<?php require_once __DIR__ . '/../_local/modal-terms.html'; ?>
-</body>
-</html>
-<!-- START CSS -->
 <link rel="stylesheet" href="/src/css/index_index-topsection.css">
-<!-- END CSS -->
-
-<!-- START SECONDARY -->
 <script src="/src/js/index_index-changing-text.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
+	document.title = "Home @ Xena";
 	$('.sidenav').sidenav();
 	$('.carousel.carousel-slider').carousel({
 		fullWidth: true,
@@ -86,4 +59,3 @@ $(document).ready(function(){
 // 	$('#carousel1').carousel('next');
 // }, 15000);
 </script>
-<!-- END SECONDARY -->

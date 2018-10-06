@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<!-- START META TAGS -->
-	<title>Me @ Xena</title>
-	<?php require_once __DIR__ . '/../_local/_head_meta.html'; ?>
-	<?php require_once __DIR__ . '/../_local/_head_includes.html'; ?>
-</head>
-<body>
-<!-- START HEADER -->
-<header>
-	<?php require_once __DIR__ . '/../_local/navbar-sidebar.php'; ?>
-</header>
-<!-- END HEADER -->
-<div id="loader-wrapper"></div>
-<main>
-
-<!-- START CONTENT -->
 <div class="row">
 	<div class="col s12 m12 l3 xl2 hide-on-med-and-down">
 		<div class="card sidebar">
@@ -37,7 +19,6 @@
 		</div>
 	</div>
 </div>
-<!-- END CONTENT -->
 <!-- START MODALS -->
 <div id="modal-sites_importexportcontent" class="modal" style="max-height:98%;">
 	<div class="modal-content">
@@ -126,12 +107,7 @@
 	</div>
 </div>
 <!-- END MODALS -->
-</main>
-<?php require_once __DIR__ . '/../_local/footer-general.php'; ?>
-<?php require_once __DIR__ . '/../_local/modal-terms.html'; ?>
-</body>
-</html>
-<!-- START CSS  -->
+
 <style>
 main > div > div > div.card {
 	padding: 7px;
@@ -161,8 +137,6 @@ div.main-sitelist tr > td > a > i {
 </style>
 <link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/me_index-modal_deletesite.css">
 <link rel="stylesheet" href="https://xena.aljaxus.eu/src/css/me_index-modal_importexport.css">
-<!-- END CSS  -->
-<!-- START  SCRIPTS -->
 <script src="https://xena.aljaxus.eu/src/js/me_index-modal_importexport.js" charset="utf-8"></script>
 <script src="https://xena.aljaxus.eu/src/js/me_index-modal_createsite.js" charset="utf-8"></script>
 <script src="https://xena.aljaxus.eu/src/js/me_index-modal_deletesite.js" charset="utf-8"></script>
@@ -292,6 +266,7 @@ function loadSites() {
 
 }
 $(document).ready(function(){
+	document.title = "Dashboard @ Xena";
 	$('.sidenav').sidenav();
 	$('.tabs').tabs();
 	$('.modal').modal();
@@ -301,4 +276,3 @@ $(document).ready(function(){
 	loadSites();
 });
 </script>
-<!-- END  SCRIPTS -->

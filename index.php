@@ -1,6 +1,23 @@
+<?php require_once __DIR__ . '/inc/__util/firstload.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- START META TAGS -->
+	<title>Loading ... @ Xena</title>
+	<?php require_once __DIR__ . '/inc/__local/_head_meta.html'; ?>
+	<?php require_once __DIR__ . '/inc/__local/_head_includes.html'; ?>
+	<!-- END GOOGLE OAUTH -->
+</head>
+<body>
+<!-- START HEADER -->
+<header>
+	<?php require_once __DIR__ . '/inc/__local/navbar-sidebar.php'; ?>
+</header>
+<!-- END HEADER -->
+<div id="loader-wrapper"></div>
+<main>
+<!-- START CONTENT -->
 <?php
-
-require_once __DIR__ . '/inc/_util/firstload.php';
 
 if (!empty($_GET['par1'])){
 	$path = __DIR__ . '/inc/_index/'.$_GET['par1'].'.php';
@@ -12,3 +29,11 @@ if (!empty($_GET['par1'])){
 } else {
 	require_once __DIR__ . '/inc/_index/index.php';
 }
+
+?>
+<!-- END CONTENT -->
+</main>
+<?php require_once __DIR__ . '/inc/__local/footer-general.php'; ?>
+<?php require_once __DIR__ . '/inc/__local/modal-terms.html'; ?>
+</body>
+</html>

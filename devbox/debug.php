@@ -1,10 +1,12 @@
 <?php
-require_once __DIR__ . '/../inc/_util/firstload.php';
+require_once __DIR__ . '/../inc/__util/firstload.php';
 
 $statusData = [
 	'get' => null,
 	'post' => null,
 	'session' => null
+	'files' => null,
+	'cookie' => null
 ];
 
 if ( isset($_SESSION) && !empty($_SESSION) ){
@@ -17,6 +19,14 @@ if ( isset($_GET) && !empty($_GET) ){
 
 if ( isset($_POST) && !empty($_POST) ){
 	$statusData['post'] = $_POST;
+}
+
+if ( isset($_FILES) && !empty($_FILES) ){
+	$statusData['files'] = $_FILES;
+}
+
+if ( isset($_COOKIE) && !empty($_COOKIE) ){
+	$statusData['cookie'] = $_COOKIE;
 }
 
 
